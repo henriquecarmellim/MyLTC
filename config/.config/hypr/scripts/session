@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Menu de sessão (Ctrl+Alt+Del) até o shell próprio ter o dele.
+pkill fuzzel && exit 0
+
+choice=$(printf '%s\n' "Bloquear" "Suspender" "Sair" "Reiniciar" "Desligar" |
+    fuzzel --dmenu --prompt "Sessão: ") || exit 0
+
+case "$choice" in
+    Bloquear)  pidof hyprlock || hyprlock ;;
+    Suspender) systemctl suspend ;;
+    Sair)      hyprctl dispatch 'hl.dsp.exit()' ;;
+    Reiniciar) systemctl reboot ;;
+    Desligar)  systemctl poweroff ;;
+esac

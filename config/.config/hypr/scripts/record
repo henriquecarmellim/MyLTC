@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Gravação de tela (liga/desliga com o mesmo atalho).
+# Sem argumento = tela inteira; "sound" = com áudio; "region" = área selecionada.
+set -euo pipefail
+
+if pkill -INT -x wf-recorder; then
+    notify-send -a Gravação "Gravação salva" 2>/dev/null || true
+    exit 0
+fi
+
+dir="${XDG_VIDEOS_DIR:-$HOME/Videos}/Recordings"
+mkdir -p "$dir"
+file="$dir/$(date +%Y-%m-%d_%H-%M-%S).mp4"
+args=(-f "$file")
+
+case "${1:-}" in
+    sound)  args+=(--audio) ;;
+    region) args+=(-g "$(slurp)") || exit 0 ;;
+esac
+
+notify-send -a Gravação "Gravando…" "Aperte o mesmo atalho para parar" 2>/dev/null || true
+exec wf-recorder "${args[@]}"

@@ -1,0 +1,8 @@
+// Quick actions: deixa o @USER@ ligar/desligar links do systemd-networkd
+// (usado pelo botão "VPN de casa" = networkctl up/down wg0) sem pedir senha.
+polkit.addRule(function (action, subject) {
+    if (action.id == "org.freedesktop.network1.manage-links" &&
+        subject.user == "@USER@" && subject.local && subject.active) {
+        return polkit.Result.YES;
+    }
+});

@@ -1,0 +1,97 @@
+# MyLTC — prompt (Starship), paleta latenci.in
+"$schema" = 'https://starship.rs/config-schema.json'
+
+palette = "myltc"
+add_newline = true
+command_timeout = 800
+
+format = """
+[╭─](red)$os$username$directory$git_branch$git_status$nodejs$bun$python$java$rust$golang$docker_context$cmd_duration
+[╰─](red)$character"""
+
+[palettes.myltc]
+red = "#ff2d39"
+red_light = "#ff5b64"
+red_soft = "#ff858c"
+red_dark = "#43141a"
+text = "#f4f4f5"
+muted = "#a0a0aa"
+subtle = "#5c5c66"
+
+[os]
+disabled = false
+style = "bold red"
+format = "[$symbol ]($style)"
+
+[os.symbols]
+Arch = "󰣇"
+
+[username]
+show_always = false
+style_user = "red_soft"
+format = "[$user ]($style)"
+
+[directory]
+style = "bold text"
+read_only = " 󰌾"
+read_only_style = "red"
+truncation_length = 4
+truncation_symbol = "…/"
+format = "[$path]($style)[$read_only]($read_only_style) "
+
+[directory.substitutions]
+"~/Projects" = "󰲋 Projects"
+
+[git_branch]
+symbol = " "
+style = "red_light"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "red_soft"
+format = "([$all_status$ahead_behind]($style) )"
+
+[nodejs]
+symbol = " "
+style = "muted"
+format = "[$symbol$version]($style) "
+
+[bun]
+symbol = " "
+style = "muted"
+format = "[$symbol$version]($style) "
+
+[python]
+symbol = " "
+style = "muted"
+format = "[$symbol$version( \\($virtualenv\\))]($style) "
+
+[java]
+symbol = " "
+style = "muted"
+format = "[$symbol$version]($style) "
+
+[rust]
+symbol = " "
+style = "muted"
+format = "[$symbol$version]($style) "
+
+[golang]
+symbol = " "
+style = "muted"
+format = "[$symbol$version]($style) "
+
+[docker_context]
+symbol = " "
+style = "muted"
+format = "[$symbol$context]($style) "
+
+[cmd_duration]
+min_time = 2000
+style = "subtle"
+format = "[ $duration]($style) "
+
+[character]
+success_symbol = "[❯](bold red)"
+error_symbol = "[❯](bold red_soft)"
+vimcmd_symbol = "[❮](bold red_light)"

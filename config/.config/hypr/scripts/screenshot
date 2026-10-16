@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Print: "full" = tela inteira, "region" = área selecionada.
+# Copia para a área de transferência e salva em ~/Pictures/Screenshots.
+set -euo pipefail
+
+dir="${XDG_PICTURES_DIR:-$HOME/Pictures}/Screenshots"
+mkdir -p "$dir"
+file="$dir/$(date +%Y-%m-%d_%H-%M-%S).png"
+
+case "${1:-full}" in
+    region)
+        geometry="$(slurp)" || exit 0 # Esc cancela
+        grim -g "$geometry" "$file"
+        ;;
+    *)
+        grim "$file"
+        ;;
+esac
+
+wl-copy --type image/png <"$file"
+notify-send -a Screenshot -i "$file" "Print salvo" "$file" 2>/dev/null || true
