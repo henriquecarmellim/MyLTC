@@ -14,6 +14,9 @@ Singleton {
     property bool dnd: false       // não perturbe: notificações não aparecem na tela
     property bool keepAwake: false // "não desligar": bloqueia suspensão/tampa/ociosidade
     property bool nightLight: false
+    // Adaptativo (Adaptive.qml): tela cheia silencia notificações; bateria liga economia
+    property bool autoDnd: false
+    property bool powerSave: false
 
     // Notificações que estão aparecendo na tela agora
     property var popups: []
@@ -37,7 +40,7 @@ Singleton {
 
         onNotification: n => {
             n.tracked = true;
-            if (!root.dnd || n.urgency === NotificationUrgency.Critical)
+            if ((!root.dnd && !root.autoDnd) || n.urgency === NotificationUrgency.Critical)
                 root.popups = [n, ...root.popups].slice(0, 5);
             n.closed.connect(() => root.dismiss(n));
         }

@@ -110,5 +110,12 @@ Row {
             font.pixelSize: Theme.iconSize
         }
         Label { text: root.info.battery + "%"; color: parent.low ? Theme.red : Theme.muted }
+        // modo economia (fora da tomada) — ver Adaptive.qml
+        Label {
+            visible: ShellState.powerSave
+            text: "󰌪"
+            color: "#7ec699"
+            font.pixelSize: Theme.iconSize
+        }
     }
 }

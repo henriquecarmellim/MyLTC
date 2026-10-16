@@ -1,0 +1,21 @@
+#!/bin/sh
+# Tampa do notebook com monitor externo (chamado pelo adaptive.lua).
+#   lid close  -> se houver outro monitor, desliga só a tela interna
+#   lid open   -> religa a tela interna
+internal=$(hyprctl monitors all -j | python3 -I -c '
+import json, sys
+print(next((m["name"] for m in json.load(sys.stdin) if m["name"].startswith("eDP")), ""))')
+[ -n "$internal" ] || exit 0
+
+case "$1" in
+    close)
+        others=$(hyprctl monitors -j | python3 -I -c "
+import json, sys
+print(sum(1 for m in json.load(sys.stdin) if m['name'] != '$internal'))")
+        [ "$others" -gt 0 ] || exit 0
+        hyprctl eval "hl.monitor({ output = \"$internal\", disabled = true })"
+        ;;
+    open)
+        hyprctl eval "hl.monitor({ output = \"$internal\", mode = \"highrr\", position = \"auto\", scale = 1 })"
+        ;;
+esac

@@ -1,5 +1,5 @@
 //@ pragma UseQApplication
-// Shell próprio do note — wallpaper + barra por monitor, OSD, notificações e quick actions.
+// Shell próprio do note — wallpaper + barra por monitor, OSD, notificações, quick actions e motor adaptativo.
 import Quickshell
 import QtQuick
 
@@ -23,4 +23,5 @@ ShellRoot {
     Osd {}
     Notifications {}
     QuickPanel {}
+    Adaptive {}
 }

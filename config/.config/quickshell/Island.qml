@@ -6,6 +6,8 @@ Rectangle {
     property int padding: 12
 
     implicitWidth: row.implicitWidth + padding * 2
+    // a ilha cresce/encolhe suavemente (ex.: áreas de trabalho novas)
+    Behavior on implicitWidth { NumberAnimation { duration: 260; easing.type: Easing.OutCubic } }
     implicitHeight: Theme.barHeight
     radius: Theme.radius
     color: Theme.bg

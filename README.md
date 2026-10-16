@@ -33,6 +33,14 @@ Paleta tirada do [latenci.in](https://latenci.in) · shell próprio em [Quickshe
   - Esquerda: logo do Arch (abre o launcher) e a música tocando (clique = play/pause, rolar = próxima/anterior).
   - Centro: áreas de trabalho numeradas. A ativa fica numa pílula vermelha e as que têm janelas ganham um tracinho.
   - Direita: Wi-Fi, VPN, volume, brilho, bateria, data e hora. Clicar abre as quick actions.
+- **Adaptativo de verdade:** o rice reage sozinho ao contexto do notebook.
+  - Uma janela só na área: sem bordas nem espaços, aproveitando a tela inteira.
+  - Fora da tomada: modo economia, sem desfoque e sem sombras (folha verde na barra). Na tomada volta tudo.
+  - Bateria em 20%, 10% e 5%: avisos, e o de 5% é crítico.
+  - Janela em tela cheia: as notificações não aparecem, só as críticas.
+  - Das 19h às 6h30: a luz noturna liga sozinha. Mexer no botão vale até o próximo horário.
+  - Monitor externo + tampa fechada: desliga só a tela do note e continua no monitor, sem suspender.
+  - Áreas de trabalho além da 5 entram deslizando na barra e saem animadas quando ficam vazias.
 - **Quick actions** (`Super+N`): painel escondido que desliza da direita, todo navegável pelo teclado.
   - Não desligar (bloqueia suspender, ociosidade e tampa), VPN WireGuard, Wi-Fi, não perturbe, luz noturna, microfone.
   - Sliders de volume e brilho, bloquear, suspender, sair, reiniciar/desligar com confirmação e limpar notificações.
